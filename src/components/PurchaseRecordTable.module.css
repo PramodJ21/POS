@@ -1,0 +1,25 @@
+.purchaseRecordTable table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.purchaseRecordTable table{
+    width: 100%;
+}
+.purchaseRecordTable table th{
+
+    background-color: var(--clr-table-head);
+    color: var(--clr-table-head-text);
+    padding: 10px;
+    text-align: left;
+}
+
+.purchaseRecordTable table td{
+
+    padding: 10px;
+    text-align: left;
+}
+.purchaseRecordTable table tr:hover{
+    background-color: var(--clr-table-row-hover);
+}

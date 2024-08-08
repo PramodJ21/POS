@@ -1,0 +1,87 @@
+.main{
+    width: 100%;
+}
+
+.main .recipes{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6%;
+    /* justify-content: space-around; */
+}
+
+.main .recipes .recipe{
+    width: 20%;
+    height: 250px;
+    background-color: var(--clr-bg2);
+    /* padding: 10px; */
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    /* gap: 30px; */
+    /* justify-content: space-between; */
+    margin-bottom: 20px;
+}
+
+.main .recipes .recipe .title{
+    width: 100%;
+    height: 20%;
+    background-color: var(--clr-table-head);
+    color: var(--clr-table-head-text);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+    margin-bottom: 0px;
+}
+.main .recipes .recipe .ingredients{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+.main .recipes .recipe .ingredients ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0;
+}
+
+.main .recipes .recipe .ingredients ul li{
+    display: flex;
+    /* margin-bottom: 5px; */
+}
+
+.main .recipes .recipe .output{
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    /* gap: 10px; */
+}
+
+.main .recipes .add{
+    width: 20%;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main .recipes .add button{
+    width: 75px;
+    height: 75px;
+    border-radius: 10%;
+    background-color: var(--clr-table-head);
+    color: var(--clr-table-head-text);
+    font-size: 2rem;
+    border: 2px solid var(--clr-table-head);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.main .recipes .add button:hover{
+    border-radius: 50%;
+}

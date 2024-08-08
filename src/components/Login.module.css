@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--clr-bg);
+}
+.float{
+    display: flex;
+    height: 80vh;
+    width: 60vw;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.445);
+    background-color: var(--clr-bg2);
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 100%;
+    width: 50%;
+    background-image: url('download.jpeg');
+    background-color: black;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-right: 1px solid rgba(0, 0, 0, 0.13);
+}
+.left .cover{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    
+}
+.greetings{
+    color: var(--clr-txt);
+    font-family: Arial, sans-serif;
+    margin-bottom: 30px;
+}
+.greetings h1{
+    text-align: center;
+    font-size: 50px;
+
+}
+.greetings h2{
+    font-size: 30px;
+
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.form .email, .form .passwordField{
+    margin-bottom: 10px;
+    padding: 20px;
+    width: 75%;
+    height: 50px;
+    border:  none;
+    background-color: white;
+}
+.form .login{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+.form .login .submitBtn{
+    padding: 10px;
+    width: 75%;
+    height: 50px;
+    border: none;
+    background-color: transparent;
+    color: var(--btn-primary);
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid var(--btn-primary);
+}
+
+.form .email:focus, .form .passwordField:focus{
+    /* background-color: hsl(0, 0%, 95%); */
+    border: 1px solid var(--btn-primary);
+    outline: none;
+}
+
+.form .login .submitBtn:hover{
+    background-color: var(--btn-primary);
+    color: var(--clr-bg2);
+}

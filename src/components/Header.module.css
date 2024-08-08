@@ -1,0 +1,41 @@
+.header{
+    position: fixed;
+    width: 100vw;
+    height: 10vh;
+    background-color: var(--clr-table-head);
+    color: var(--clr-table-head-text);
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.header h1{
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.header .nav{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.header .nav .profile{
+    height: 50px;
+    width: 50px;
+    background-color: whitesmoke;
+    border-radius: 50%;
+
+}
+
+.header .nav .logout a{
+    color: var(--clr-table-head-text);
+    font-size: 2rem;
+}
+
+.header .nav .logout a:hover{
+    color: var(--clr-txt-aside-hover);
+}

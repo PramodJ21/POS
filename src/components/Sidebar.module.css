@@ -1,0 +1,138 @@
+
+
+.aside{
+    height: 100vh;
+    width: 12%;
+    background-color: var(--clr-aside);
+    display: flex;
+    flex-direction: column;
+    color: var(--clr-txt-aside);
+    justify-content: space-evenly;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transition: 0.3s;
+    margin-right: 20px;
+}
+
+.aside .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    height: 10%;
+    gap: 10px;
+}
+
+.aside .userProfile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+
+}
+
+.aside .userProfile img{
+    border-radius: 50%;
+}
+
+.aside .userProfile .name{
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 5%;
+
+}
+
+.aside .userProfile .position{
+    font-size: 1rem;
+    color: var(--clr-txt-aside-sec);
+}
+
+
+.aside .nav{
+    display: flex;
+    flex-direction: column;
+    height: 65%;
+
+}
+.aside .nav ul{
+    padding: 0;
+    height: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+}
+
+
+.aside .nav ul li{
+    width: 100%;
+    display: flex;
+    /* margin-left: 20%; */
+}
+.aside .nav ul li a{
+    position: relative;
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    gap: 10px;
+    align-items: center;
+    border-radius: 10px 0px 0px 10px;
+    text-decoration: none;
+    color: var(--clr-txt-aside);
+    transition: background-color 0.3s,color 0.3s;
+    overflow: hidden;
+}
+
+.aside .nav ul li a::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scaleX(0);
+    background-color: var(--clr-bg);
+    transform-origin: right;
+    transition: transform 0.3s ease-in-out;
+    z-index: 0;
+}
+
+.aside .nav ul li a:hover::before {
+    transform: scaleX(1);
+  }
+
+
+.aside .nav ul li a:hover{
+    color: var(--clr-txt);
+    font-size: 1.05rem;
+    cursor: pointer;
+}
+.aside .nav ul li a > * {
+    /* position: relative; */
+    z-index: 1;
+  }
+.aside .nav .logout a{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--clr-txt-aside);
+}
+
+.aside .nav .logout a:hover{
+    cursor: pointer;
+    color: var(--clr-txt-aside-hover);
+}
+
+.active_link{
+    background-color: var(--clr-bg2);
+    
+    cursor: pointer;    
+}
+.active_link > *{
+    color: var(--clr-txt);
+    font-size: 1.05rem;
+}

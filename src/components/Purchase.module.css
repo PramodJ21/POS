@@ -1,0 +1,102 @@
+.purchase{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main{
+    width: 88%;
+    height: 100%;
+    background-color: var(--main-bg);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.main h1{
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 2.5rem;
+}
+.main .filter{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    height: 5%;
+}
+
+.main .filter input{
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--clr-bg2);
+    color: var(--clr-txt);
+    font-weight: bold;
+}
+
+.main .filter p{
+    color: var(--clr-txt2);
+}
+.main .filter button{
+    width: 75px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--clr-bg2);
+    color: var(--clr-txt    );
+    font-weight: bold;
+    cursor: pointer;
+}
+.main .filter button:hover{
+    background-color: var(--clr-txt);
+    color: var(--clr-bg2);
+}
+
+.main .filter .from{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.main .filter .to{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+.main .content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 85%;
+}
+.main .content .charts{
+    display: flex;
+    height: 40%;
+    gap: 20px;
+}
+
+.main .content .charts .chart{
+    height: 100%;
+    flex: 1;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: var(--clr-bg2);
+
+}
+
+.main .content .purchaseTable{
+    max-height: 60%;
+    overflow: scroll;
+}
+
+
+

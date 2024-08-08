@@ -1,0 +1,43 @@
+.masters{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main{
+    width: 88%;
+    background-color: var(--main-bg);
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.main h1{
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 2.5rem;
+}
+.main .masterTable{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* margin-bottom: 20px; */
+}
+.main .masterTable .manufacturingMaster h2{
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    /* letter-spacing: 2px; */
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}

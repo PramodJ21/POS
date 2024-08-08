@@ -1,0 +1,24 @@
+:root{
+    --clr-bg: #fff;
+    --clr-bg2: #f8f8f8;
+    --clr-aside: #242124;
+    --btn-primary: #353935;
+    --clr-txt: #020617;
+    --clr-txt2: #646464;    
+    --clr-txt-aside: #f8f8f8;
+    --clr-txt-aside-sec: #dfd8d0;
+    --clr-txt-aside-hover: #ff9b21;
+    --clr-table-head: #22282b;
+    --clr-table-head-text: #f8f8f8;
+    --clr-table-row-hover: #f0f0f0;
+}
+
+*{
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}

@@ -1,0 +1,25 @@
+.purchaseTransactionTable table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.purchaseTransactionTable table{
+    width: 100%;
+}
+.purchaseTransactionTable table th{
+
+    background-color: var(--clr-table-head);
+    color: var(--clr-table-head-text);
+    padding: 10px;
+    text-align: left;
+}
+
+.purchaseTransactionTable table td{
+
+    padding: 10px;
+    text-align: left;
+}
+.purchaseTransactionTable table tr:hover{
+    background-color: var(--clr-table-row-hover);
+}
