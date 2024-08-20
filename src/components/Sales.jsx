@@ -1,8 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Sales.module.css'
 import Sidebar from './SideBar.jsx'
 import TransactionTable from './TransactionTable.jsx'
 const Sales = () => {
+  const [salesData, setSalesData] = useState([])
+  useEffect(()=>{
+    getSalesData()
+  },[])
+  const getSalesData = async() => {
+    const response = await fetch("http://localhost:3500/getSales",{
+      method: "GET",
+      headers: {
+        "Content-Type": "application / json",
+        },
+        credentials: "include"
+    })
+    const data = await response.json()
+    console.log(data)
+    setSalesData(data)
+
+  }
   return (
     <div className={styles.sales}>
         <Sidebar />
@@ -29,14 +46,7 @@ const Sales = () => {
             </div>
           </div>
           <div className={styles.table}>
-          <TransactionTable transactions={[{
-            "invoiceNo":"INV/001/24-25",
-            "transactionDate":"1/04/24",
-            "customerName":"Pramod Joshi",
-            "productName":"Crocin",
-            "quantity":"10",
-            "totalAmount":"100"
-            },]}  />
+          <TransactionTable transactions={salesData}  />
             </div>
         </div>
         </main>

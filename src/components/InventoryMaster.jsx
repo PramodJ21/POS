@@ -41,8 +41,8 @@ const InventoryMaster = (props) => {
                             <td>{item.purchasePrice}</td>
                             <td>{item.sellPrice}</td>
                             <td>
-                                <button onClick={()=>{deleteData(index)}}><FontAwesomeIcon icon={faPen} /></button>
-                                <button><FontAwesomeIcon icon={faTrash} /></button>
+                                <button><FontAwesomeIcon icon={faPen} /></button>
+                                <button onClick={()=>{deleteData(index)}}><FontAwesomeIcon icon={faTrash} /></button>
                                 
                                 </td>
                         </tr>

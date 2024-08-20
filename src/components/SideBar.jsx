@@ -12,8 +12,6 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 const Sidebar = () => {
-  const name = "Amod";
-  const a = `Name: ${name}`;
   return (
     <>
     <aside className={styles.aside}>

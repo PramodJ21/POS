@@ -7,7 +7,7 @@ const TransactionTable = (props) => {
             <thead>
                 <tr>
                     <th>Invoice No</th>
-                    <th>Date</th>
+                    {/* <th>Date</th> */}
                     <th>Customer Name</th>
                     <th>Product Name</th>
                     <th>Quantity</th>
@@ -19,11 +19,11 @@ const TransactionTable = (props) => {
                     return (
                         <tr key={index}>
                             <td>{item.invoiceNo}</td>
-                            <td>{item.transactionId}</td>
+                            {/* <td>{item.date}</td> */}
                             <td>{item.customerName}</td>
                             <td>{item.productName}</td>
-                            <td>{item.quantity}</td>
-                            <td>{item.totalAmount}</td>
+                            <td>{item.productQty}</td>
+                            <td>{item.productTotal}</td>
                         </tr>
                     )
                 })}
