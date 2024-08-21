@@ -10,10 +10,21 @@ import AddMasterData from './AddMasterData';
 const InventoryMaster = (props) => {
     const [trigger, setTrigger] = useState(false)
 
-    function deleteData(index){
-        const newData = [...props.data]
-        newData.splice(index, 1)
-        props.setData(newData)
+    async function deleteData(no){
+        const response = await fetch("http://localhost:3500/masters/delete",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials : "include",
+            body: JSON.stringify({no})
+        })
+        
+        if(response.ok){
+            console.log("Data deleted successfully")
+        }else{
+            console.log("Data not deleted")
+        }
     }
   return (
     <div className={styles.table}>
@@ -42,7 +53,7 @@ const InventoryMaster = (props) => {
                             <td>{item.sellPrice}</td>
                             <td>
                                 <button><FontAwesomeIcon icon={faPen} /></button>
-                                <button onClick={()=>{deleteData(index)}}><FontAwesomeIcon icon={faTrash} /></button>
+                                <button onClick={()=>{deleteData(item.no)}}><FontAwesomeIcon icon={faTrash} /></button>
                                 
                                 </td>
                         </tr>

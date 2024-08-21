@@ -18,7 +18,8 @@ const Login = () => {
             body: JSON.stringify({
                 username: username,
                 password: password
-            })
+            }),
+            credentials: "include",
         
         }
         )

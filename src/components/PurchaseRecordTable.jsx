@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './PurchaseRecordTable.module.css'
 const PurchaseRecordTable = (props) => {
+    useEffect(()=>{
+        console.log(props.records)
+    },[])
   return (
     (props.trigger) ? (
     <div className={styles.purchaseRecordTable}>

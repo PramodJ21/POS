@@ -3,44 +3,46 @@ import './RecordSales.css';
 import CustomerPopUp from './CustomerPopUp.jsx';
 import Header from './Header.jsx';
 
-const data = {
-  paracetamol: {
-    code: 'paracetamol',
-    name: 'Paracetamol',
-    price: 10,
-    quantity: 1,
-  },
-  ibuprofen: {
-    code: 'ibuprofen',
-    name: 'Ibuprofen',
-    price: 15,
-    quantity: 1,
-  },
-  aspirin: {
-    code: 'aspirin',
-    name: 'Aspirin',
-    price: 20,
-    quantity: 1,
-  },
-  antacid: {
-    code: 'antacid',
-    name: 'Antacid',
-    price: 5,
-    quantity: 1,
-  },
-  cough_syrup: {
-    code: 'cough_syrup',
-    name: 'Cough Syrup',
-    price: 25,
-    quantity: 1,
-  },
-  vitamin_c: {
-    code: 'vitamin_c',
-    name: 'Vitamin C',
-    price: 8,
-    quantity: 1,
-  },
-};
+
+const data = {}
+// const data = {
+//   paracetamol: {
+//     code: 'paracetamol',
+//     name: 'Paracetamol',
+//     price: 10,
+//     quantity: 1,
+//   },
+//   ibuprofen: {
+//     code: 'ibuprofen',
+//     name: 'Ibuprofen',
+//     price: 15,
+//     quantity: 1,
+//   },
+//   aspirin: {
+//     code: 'aspirin',
+//     name: 'Aspirin',
+//     price: 20,
+//     quantity: 1,
+//   },
+//   antacid: {
+//     code: 'antacid',
+//     name: 'Antacid',
+//     price: 5,
+//     quantity: 1,
+//   },
+//   cough_syrup: {
+//     code: 'cough_syrup',
+//     name: 'Cough Syrup',
+//     price: 25,
+//     quantity: 1,
+//   },
+//   vitamin_c: {
+//     code: 'vitamin_c',
+//     name: 'Vitamin C',
+//     price: 8,
+//     quantity: 1,
+//   },
+// };
 
 const RecordSales = () => {
   const [total, setTotal] = useState(0);
@@ -50,11 +52,23 @@ const RecordSales = () => {
   const [popupTrigger, setPopupTrigger] = useState(false);
   const [customerData, setCustomerData] = useState({});
   const [isAdded, setIsAdded] = useState(false);
-  const [salesData, setSalesData] = useState([]); // New state for sales data
   const salesInputRef = useRef(null);
+  const addButtonRef = useRef(null);
   const regexPhone = /^[0-9]{10}$/;
+  
+
+    const getMasterData = async () => {
+        const response = await fetch('http://localhost:3500/masters/get')
+        const data_ = await response.json()
+        data_.forEach((item,index) =>{
+          data[item.no] = {"code":item.no,"name":item.name,"price":item.sellPrice,"quantity":1}
+        } )
+        console.log(data)
+    }
 
   useEffect(() => {
+    getMasterData()
+    
     window.addEventListener('keypress', handleKeyPress);
     return () => window.removeEventListener('keypress', handleKeyPress);
   }, []);
@@ -135,7 +149,6 @@ const RecordSales = () => {
       date: new Date().toISOString(), // Current date and time
     };
 
-    setSalesData((prevData) => [...prevData, newSale]);
     console.log('Completed Sale:', newSale);
     const response = fetch("http://localhost:3500/storeSales",
     {
@@ -170,11 +183,11 @@ const RecordSales = () => {
               }}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                  addItem(data[itemValue.toLowerCase()]);
+                  addItem(data[itemValue.toUpperCase()]);
                 }
               }}
             />
-            <button onClick={() => addItem(data[itemValue.toLowerCase()])}>
+            <button onClick={() => addItem(data[itemValue.toUpperCase()])}>
               Add
             </button>
           </div>
@@ -219,7 +232,7 @@ const RecordSales = () => {
               placeholder="Phone Number"
             />
             {isAdded ? (
-              <button onClick={addCustomer}>Create Customer</button>
+              <p onClick={addCustomer}>Customer Added</p>
             ) : (
               <button onClick={addCustomer}>Add</button>
             )}

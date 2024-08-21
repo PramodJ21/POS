@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './Masters.module.css'
 import Sidebar from './SideBar'
 import InventoryMaster from './InventoryMaster'
@@ -6,40 +6,18 @@ import ManufacturingMaster from './ManufacturingMaster'
 
 
 const Masters = () => {
-    const data1 =[
-        {
-            "no":"TP-PARA",
-            "name":"Paracetamol",
-            "category":"Trading Product",
-            "uom":"grams",
-            "purchasePrice":"10Rs",
-            "sellPrice":"20Rs"
-        },
-        {
-            "no":"FG-SINA",
-            "name":"Sinarest",
-            "category":"Finished Product",
-            "uom":"grams",
-            "purchasePrice":"-",
-            "sellPrice":"40Rs"
-        },
-        {
-            "no":"RM-PARAIP",
-            "name":"Paracetamol IP",
-            "category":"Raw Material",
-            "uom":"milligrams",
-            "purchasePrice":"100Rs",
-            "sellPrice":"-"
-        },
-        {
-            "no":"RM-PHIP",
-            "name":"Phenylephrine Hydrochloride IP",
-            "category":"Raw Material",
-            "uom":"grams",
-            "purchasePrice":"100Rs",
-            "sellPrice":"-"
-        }
-    ]
+    const [masterData, setMasterData] = useState([])
+    useEffect(()=>{
+        getMasterData()
+    },[])
+
+    const getMasterData = async () => {
+        const response = await fetch('http://localhost:3500/masters/get')
+        const data = await response.json()
+        setMasterData(data)
+    }
+
+
 
     const recipesData = [{
         title: "Sinarest",
@@ -155,14 +133,13 @@ const Masters = () => {
     },]
 
     const [recipes, setRecipes] = useState(recipesData);
-    const [inventoryData, setInventoryData] = useState(data1);
   return (
     <div className={styles.masters}>
         <Sidebar />
         <main className={styles.main}>
         <h1>Masters</h1>
         <div className={styles.masterTable}>
-            <InventoryMaster data={inventoryData} setData={setInventoryData}/>
+            <InventoryMaster data={masterData} setData={setMasterData}/>
             <div className={styles.manufacturingMaster}>
                 <h2>Manufacturing Master</h2>
                 <ManufacturingMaster data={recipes} setData={setRecipes}/>
