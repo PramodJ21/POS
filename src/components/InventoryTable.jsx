@@ -7,7 +7,6 @@ const InventoryTable = (props) => {
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Type</th>
                     <th>Opening Balance</th>
                     <th>Purchased</th>
                     <th>Sold</th>
@@ -18,11 +17,10 @@ const InventoryTable = (props) => {
                 {props.inventory.map((item, index) => {
                     return (
                         <tr key={index}>
-                            <td>{item.name}</td>
-                            <td>{item.type}</td>
+                            <td>{item.productName}</td>
                             <td>{item.openingBalance}</td>
-                            <td>{item.purchased}</td>
-                            <td>{item.sold}</td>
+                            <td>{item.totalPurchased}</td>
+                            <td>{item.totalSold}</td>
                             <td>{item.closingBalance}</td>
                         </tr>
                     )

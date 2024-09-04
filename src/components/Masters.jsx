@@ -9,130 +9,23 @@ const Masters = () => {
     const [masterData, setMasterData] = useState([])
     useEffect(()=>{
         getMasterData()
+        getRecipesData()
     },[])
 
     const getMasterData = async () => {
-        const response = await fetch('http://localhost:3500/masters/get')
+        const response = await fetch('http://localhost:5000/products')
         const data = await response.json()
         setMasterData(data)
     }
+    
 
+   const getRecipesData = async () =>{
+        const response = await fetch('http://localhost:5000/recipes')
+        const data = await response.json()
+        setRecipes(data)
+   }
 
-
-    const recipesData = [{
-        title: "Sinarest",
-        ingredients: [
-            {
-                name: "Paracetamol",
-                quantity: "100mg"
-            },
-            {
-                name: "Phenylephrine Hydrochloride",
-                quantity: "5mg"
-            },
-            {
-                name: " Chlorpheniramine maleate IP",
-                quantity: "2mg"
-            }
-        ],
-        output: 
-            {
-                name: "Sinarest",
-                quantity: "1"
-            }
-        
-    },
-    {
-        title: "Sinarest",
-        ingredients: [
-            {
-                name: "Paracetamol",
-                quantity: "100mg"
-            },
-            {
-                name: "Phenylephrine Hydrochloride",
-                quantity: "5mg"
-            },
-            {
-                name: " Chlorpheniramine maleate IP",
-                quantity: "2mg"
-            }
-        ],
-        output: 
-            {
-                name: "Sinarest",
-                quantity: "1"
-            }
-        
-    },{
-        title: "Sinarest",
-        ingredients: [
-            {
-                name: "Paracetamol",
-                quantity: "100mg"
-            },
-            {
-                name: "Phenylephrine Hydrochloride",
-                quantity: "5mg"
-            },
-            {
-                name: " Chlorpheniramine maleate IP",
-                quantity: "2mg"
-            }
-        ],
-        output: 
-            {
-                name: "Sinarest",
-                quantity: "1"
-            }
-        
-    },{
-        title: "Sinarest",
-        ingredients: [
-            {
-                name: "Paracetamol",
-                quantity: "100mg"
-            },
-            {
-                name: "Phenylephrine Hydrochloride",
-                quantity: "5mg"
-            },
-            {
-                name: " Chlorpheniramine maleate IP",
-                quantity: "2mg"
-            }
-        ],
-        output: 
-            {
-                name: "Sinarest",
-                quantity: "1"
-            }
-        
-    },{
-        title: "Sinarest",
-        ingredients: [
-            {
-                name: "Paracetamol",
-                quantity: "100mg"
-            },
-            {
-                name: "Phenylephrine Hydrochloride",
-                quantity: "5mg"
-            },
-            {
-                name: " Chlorpheniramine maleate IP",
-                quantity: "2mg"
-            }
-        ],
-        output: 
-            {
-                name: "Sinarest",
-                quantity: "1"
-            }
-        
-    },]
-
-    const [recipes, setRecipes] = useState(recipesData);
+    const [recipes, setRecipes] = useState([]);
   return (
     <div className={styles.masters}>
         <Sidebar />

@@ -7,19 +7,32 @@ const Sales = () => {
   useEffect(()=>{
     getSalesData()
   },[])
-  const getSalesData = async() => {
-    const response = await fetch("http://localhost:3500/getSales",{
-      method: "GET",
-      headers: {
-        "Content-Type": "application / json",
+  const getSalesData = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/sales/get", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
+        body: JSON.stringify({
+          startDate: "2024-09-01",
+          endDate: "2024-09-05"
+        }),
         credentials: "include"
-    })
-    const data = await response.json()
-    console.log(data)
-    setSalesData(data)
-
-  }
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log(data);
+      setSalesData(data);
+    } catch (error) {
+      console.error("Error fetching sales data:", error);
+    }
+  };
+  
   return (
     <div className={styles.sales}>
         <Sidebar />

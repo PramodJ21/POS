@@ -1,0 +1,108 @@
+.main{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.manufacture_products{
+    margin-top: 15vh;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+}
+
+.manufacture_products .inputs{
+    width: 40%;
+    display: flex;
+
+    justify-content: space-between;
+    text-transform: uppercase;
+}
+.manufacture_products .inputs .product_selection,
+.manufacture_products .inputs .quantity{
+    display: flex;
+    gap: 10px;
+}
+.manufacture_products .check_button button{
+    padding: 15px;
+    border: none;
+    background-color: var(--clr-table-head);
+    color: var(--clr-table-head-text);
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
+
+
+}
+
+.manufacture_products .check_button button:hover{
+    font-size: large;
+}
+
+.manufacture_products .insufficient {
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text color */
+    border: 1px solid #f5c6cb; /* Light red border */
+    border-radius: 5px;
+    padding: 1em;
+    margin: 1em 0;
+  }
+  
+  .manufacture_products .insufficient h3 {
+    margin: 0 0 0.5em 0;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .manufacture_products .insufficient ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0;
+  }
+  
+  .manufacture_products .insufficient li {
+    margin-bottom: 0.5em;
+  }
+  
+  .manufacture_products .insufficient strong {
+    color: #491d1a; /* Slightly darker red for emphasis */
+  }
+
+  /* Assuming you are using CSS Modules or a similar CSS-in-JS approach */
+
+.sufficient {
+    background-color: #d4edda; /* Light green background */
+    color: #155724; /* Dark green text color */
+    border: 1px solid #c3e6cb; /* Light green border */
+    border-radius: 5px;
+    padding: 1em;
+    margin: 1em 0;
+    text-align: center; /* Center text and button */
+  }
+  
+  .sufficient h3 {
+    margin: 0 0 0.5em 0;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  .startButton {
+    background-color: #28a745; /* Green background for button */
+    color: white; /* White text color */
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .startButton:hover {
+    background-color: #218838; /* Darker green for hover effect */
+  }
+  

@@ -6,8 +6,8 @@ const TransactionTable = (props) => {
         <table>
             <thead>
                 <tr>
-                    <th>Invoice No</th>
-                    {/* <th>Date</th> */}
+                    <th>Transaction Id</th>
+                    <th>Sales Date</th>
                     <th>Customer Name</th>
                     <th>Product Name</th>
                     <th>Quantity</th>
@@ -18,12 +18,12 @@ const TransactionTable = (props) => {
                 {props.transactions.map((item, index) => {
                     return (
                         <tr key={index}>
-                            <td>{item.invoiceNo}</td>
-                            {/* <td>{item.date}</td> */}
+                            <td>{item.transactionId}</td>
+                            <td>{item.salesDate}</td>
                             <td>{item.customerName}</td>
                             <td>{item.productName}</td>
-                            <td>{item.productQty}</td>
-                            <td>{item.productTotal}</td>
+                            <td>{item.quantity}</td>
+                            <td>{item.totalAmount}</td>
                         </tr>
                     )
                 })}

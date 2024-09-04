@@ -10,28 +10,24 @@ const PurchaseRecordTable = (props) => {
         <table>
             <thead>
             <tr>
-                <th>Product Id</th>
+                <th>Transaction Id</th>
+                <th>Unique ID</th>
                 <th>Barcode no</th>
                 <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Rate</th>
-                <th>Total Amount</th>
                 <th>Purchase Date</th>
-                <th>Vendor</th>
+                <th>Supplier</th>
             </tr>
             </thead>
             <tbody>
             {props.records.map(
                 (record, index) => (
                     <tr key={index}>
-                        <td>{record.productId}</td>
-                        <td>{record.barcode}</td>
+                        <td>{record.purchaseTransactionId}</td>
+                        <td>{record.uniqueProductId}</td>
+                        <td>{record.barcodeNo}</td>
                         <td>{record.productName}</td>
-                        <td>{record.quantity}</td>
-                        <td>{record.rate}</td>
-                        <td>{record.totalAmount}</td>
                         <td>{record.purchaseDate}</td>
-                        <td>{record.vendor}</td>
+                        <td>{record.supplier}</td>
                     </tr>
                 )
 

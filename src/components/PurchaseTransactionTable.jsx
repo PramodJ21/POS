@@ -6,7 +6,7 @@ const PurchaseTransactionTable = (props) => {
         <table>
             <thead>
                 <tr>
-                    <th>Purchase ID</th>
+                    <th>Transaction ID</th>
                     <th>Supplier ID</th>
                     <th>Purchase Date</th>
                     <th>Product Name</th>
@@ -19,11 +19,11 @@ const PurchaseTransactionTable = (props) => {
                 {props.transactions.map((item, index) => {
                     return (
                         <tr key={index}>
-                            <td>{item.purchaseId}</td>
-                            <td>{item.supplierId}</td>
+                            <td>{item.purchaseTransactionId}</td>
+                            <td>{item.supplier}</td>
                             <td>{item.purchaseDate}</td>
                             <td>{item.productName}</td>
-                            <td>{item.unitPrice}</td>
+                            <td>{item.purchasePrice}</td>
                             <td>{item.quantity}</td>
                             <td>{item.totalAmount}</td>
                         </tr>

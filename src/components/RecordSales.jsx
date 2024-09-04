@@ -58,10 +58,10 @@ const RecordSales = () => {
   
 
     const getMasterData = async () => {
-        const response = await fetch('http://localhost:3500/masters/get')
+        const response = await fetch('http://localhost:5000/products/category/Trading%20Product')
         const data_ = await response.json()
         data_.forEach((item,index) =>{
-          data[item.no] = {"code":item.no,"name":item.name,"price":item.sellPrice,"quantity":1}
+          data[item.productCode] = {"productCode":item.productCode,"productName":item.productName,"salesPrice":item.salesPrice,"quantity":1}
         } )
         console.log(data)
     }
@@ -83,14 +83,15 @@ const RecordSales = () => {
   };
 
   function addItem(item) {
+    console.log(item)
     if (!item) {
       setItemValue('');
       alert('Item does not exist');
       return;
     }
-    setTotal((t) => t + item.price);
+    setTotal((t) => t + item.salesPrice);
     const newItems = [...items];
-    const itemIndex = items.findIndex((i) => i.code === item.code);
+    const itemIndex = items.findIndex((i) => i.productCode === item.productCode);
 
     if (itemIndex !== -1) {
       newItems[itemIndex].quantity += 1;
@@ -103,15 +104,15 @@ const RecordSales = () => {
 
   function removeItem(item) {
     const newItems = [...items];
-    const itemIndex = items.findIndex((i) => i.code === item.code);
+    const itemIndex = items.findIndex((i) => i.productCode === item.productCode);
     if (itemIndex !== -1) {
-      setTotal((t) => t - item.price * item.quantity);
+      setTotal((t) => t - item.salsePrice * item.quantity);
       newItems.splice(itemIndex, 1);
     }
     setItems(newItems);
   }
 
-  function addCustomer() {
+  async function addCustomer() {
     if (!customerPhone) {
       alert('Enter a valid phone number');
       setCustomerPhone('');
@@ -125,7 +126,13 @@ const RecordSales = () => {
       alert('Invalid phone number');
       setCustomerPhone('');
     } else {
-      setPopupTrigger(true);
+      const response = await fetch(`http://localhost:5000/customer/${customerPhone}`)
+
+      if(response.ok){
+        setIsAdded(true)
+      }else{
+        setPopupTrigger(true)
+      }
     }
   }
 
@@ -134,7 +141,7 @@ const RecordSales = () => {
     setCustomerData({ ...customerData, [phone]: { name, phone, email } });
   }
 
-  function handleEndSale() {
+  async function handleEndSale() {
     if(!isAdded){
         alert("Customer must be added first.")
         return
@@ -143,14 +150,16 @@ const RecordSales = () => {
         alert("Add items to the cart first.")
         return
     }
+    const cdata =  customerData[customerPhone]
+        ? customerData[customerPhone]
+        : { phone: customerPhone } 
     const newSale = {
-      items: [...items],
-      customer: customerData[customerPhone] || { phone: customerPhone }, // Fallback if customer not added
-      date: new Date().toISOString(), // Current date and time
+      products: [...items],
+      ...cdata
     };
 
     console.log('Completed Sale:', newSale);
-    const response = fetch("http://localhost:3500/storeSales",
+    const response = await fetch("http://localhost:5000/sales",
     {
         method: "POST",
         headers: {
@@ -158,7 +167,10 @@ const RecordSales = () => {
         },
         body: JSON.stringify(newSale)
     }
+    
     )
+    const data = await response.json()
+    alert(data.message)
     // Reset the states after the sale is recorded
     setItems([]);
     setCustomerData({});
@@ -203,11 +215,11 @@ const RecordSales = () => {
                 items.map((item, index) => {
                   return (
                     <div key={index} className="sales-item">
-                      <div className="name">{item.name}</div>
-                      <div className="price">{item.price}</div>
+                      <div className="name">{item.productName}</div>
+                      <div className="price">{item.salesPrice}</div>
                       <div className="quantity">{item.quantity}</div>
                       <div className="total">
-                        {item.price * item.quantity}
+                        {item.salesPrice * item.quantity}
                       </div>
                       <button
                         onClick={() => {
@@ -232,7 +244,7 @@ const RecordSales = () => {
               placeholder="Phone Number"
             />
             {isAdded ? (
-              <p onClick={addCustomer}>Customer Added</p>
+              <p>Customer Added</p>
             ) : (
               <button onClick={addCustomer}>Add</button>
             )}

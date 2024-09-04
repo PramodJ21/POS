@@ -12,7 +12,7 @@ import Masters from './components/Masters.jsx';
 import PurchaseRecord from './components/PurchaseRecord.jsx';
 import UnAuthorized from './components/UnAuthorized.jsx';
 import ProtectedRoute from './components/ProtectedRoute.jsx';
-
+import ManufacturingManager from './components/ManufacturingManager.jsx'
 function App() {
   return (
     <Routes>
@@ -22,7 +22,7 @@ function App() {
         element={
           <ProtectedRoute
             element={Dashboard}
-            rolesAllowed={["01"]}
+            rolesAllowed={["Admin"]}
           />
         }
       />
@@ -31,7 +31,7 @@ function App() {
         element={
           <ProtectedRoute
             element={Purchase}
-            rolesAllowed={["01"]}
+            rolesAllowed={["Admin"]}
           />
         }
       />
@@ -40,7 +40,7 @@ function App() {
         element={
           <ProtectedRoute
             element={Inventory}
-            rolesAllowed={["01"]}
+            rolesAllowed={["Admin"]}
           />
         }
       />
@@ -49,7 +49,7 @@ function App() {
         element={
           <ProtectedRoute
             element={Sales}
-            rolesAllowed={["01"]}
+            rolesAllowed={["Admin"]}
           />
         }
       />
@@ -58,7 +58,7 @@ function App() {
         element={
           <ProtectedRoute
             element={Manufacturing}
-            rolesAllowed={["01"]}
+            rolesAllowed={["Admin"]}
           />
         }
       />
@@ -67,7 +67,7 @@ function App() {
         element={
           <ProtectedRoute
             element={Masters}
-            rolesAllowed={["01"]}
+            rolesAllowed={["Admin"]}
           />
         }
       />
@@ -76,7 +76,7 @@ function App() {
         element={
           <ProtectedRoute
             element={UserManagement}
-            rolesAllowed={["01"]}
+            rolesAllowed={["Admin"]}
           />
         }
       />
@@ -85,7 +85,7 @@ function App() {
         element={
           <ProtectedRoute
             element={RecordSales}
-            rolesAllowed={["02"]}
+            rolesAllowed={["Sales Operator"]}
           />
         }
       />
@@ -94,10 +94,20 @@ function App() {
         element={
           <ProtectedRoute
             element={PurchaseRecord}
-            rolesAllowed={["03"]}
+            rolesAllowed={["Purchase"]}
           />
         }
       />
+      <Route
+        path="/manufacturing-manager"
+        element={
+          <ProtectedRoute
+            element={ManufacturingManager}
+            rolesAllowed={["Admin"]}
+          />
+        }
+      />
+      
       <Route path="/unauthorized" element={<UnAuthorized />} />
     </Routes>
   );

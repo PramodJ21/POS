@@ -12,7 +12,7 @@ const ManufacturingMaster = (props) => {
                 (recipe,index) => {
                     return (
                         <div key={index} className={styles.recipe}>
-                            <h2 className={styles.title}>{recipe.title}</h2>
+                            <h2 className={styles.title}>{recipe.output.productName}</h2>
                             <div className={styles.ingredients}>
                                 <h3>Ingredients</h3>
                                 <ul>
@@ -20,7 +20,7 @@ const ManufacturingMaster = (props) => {
                                         (ingredient,index) => {
                                             return (
                                                 <li key={index}>
-                                                    {ingredient.name} x {ingredient.quantity}
+                                                    {ingredient.productName} x {ingredient.quantity}
                                                 </li>
                                             )
                                         }
@@ -29,7 +29,7 @@ const ManufacturingMaster = (props) => {
                             </div>
                             <div className={styles.output}>
                                 <h3>Output</h3>
-                                <p>{recipe.output.name} - {recipe.output.quantity}</p>
+                                <p>{recipe.output.productName} - {recipe.output.quantity}</p>
                             </div>
                         </div>
                     )

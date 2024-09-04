@@ -74,6 +74,6 @@
 }
 
 .main .table{
-    max-height: 85%;
-    overflow: scroll;
+    /* max-height: 85%; */
+    /* overflow: scroll; */
 }

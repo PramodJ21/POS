@@ -9,7 +9,7 @@ const Login = () => {
     const navigate = useNavigate()
     const handleLogin = async () => {
         try{
-        const response = await fetch("http://localhost:3500/auth",
+        const response = await fetch("http://localhost:5000/auth/login",
         {
             method: "POST",
             headers: {
@@ -24,16 +24,16 @@ const Login = () => {
         }
         )
         if(response.ok){
-            const data = await response.json()
-            const {accessToken} = data
+            const {token} = await response.json()
+            // const {token} = data
 
-            localStorage.setItem('accessToken',accessToken)
-            const decodedToken = jwtDecode(accessToken)
-            const {UserInfo} = decodedToken
-            const roles = UserInfo.roles
-            if (roles.includes("01")) navigate("/dashboard")
-            else if (roles.includes("02")) navigate("/record-sales")
-            else if (roles.includes("03")) navigate("/record-purchase")
+            localStorage.setItem('accessToken',token)
+            const decodedToken = jwtDecode(token)
+            console.log(decodedToken)
+            const {roles} = decodedToken
+            if (roles.includes("Admin")) navigate("/dashboard")
+            else if (roles.includes("Sales Operator")) navigate("/record-sales")
+            else if (roles.includes("Purchase")) navigate("/record-purchase")
             else navigate("/unauthorized")
           
             console.log("Login Successful")

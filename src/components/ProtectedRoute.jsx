@@ -18,26 +18,12 @@ const ProtectedRoute = ({ element: Element, rolesAllowed, ...rest }) => {
 
       try {
         const decodedToken = jwtDecode(token);
-        const { UserInfo } = decodedToken;
-        const roles = UserInfo.roles;
+        const { username,roles } = decodedToken;
 
-        // Fetch user verification from backend
-        const response = await fetch('http://localhost:3500/verifyUser', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          },
-          body: JSON.stringify({ username: UserInfo.username })
-        });
-
-        if (!response.ok) {
-          // User not found or token invalid
-          setIsAuthorized(false);
-        } else {
+        
           const hasRequiredRole = rolesAllowed.some(role => roles.includes(role));
           setIsAuthorized(hasRequiredRole);
-        }
+        
       } catch (error) {
         console.error('Error verifying user:', error);
         setIsAuthorized(false);

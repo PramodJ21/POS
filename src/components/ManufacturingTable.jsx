@@ -1,37 +1,39 @@
 import React from 'react'
 import styles from './ManufacturingTable.module.css'
-const ManufacturingTable = (props) => {
+const ManufacturingTable = ({realData, data}) => {
+    const allIngredients = Array.from(new Set(realData.flatMap(detail => detail.ingredients.map(ing => ing.productName))));
+
   return (
-    <div className={styles.manufacturingTable}>
-        <table>
-            <thead>
-                <tr>
-                   <th>Bath No</th>
-                   <th>Qty A</th>
-                   <th>Qty B</th>
-                   <th>Wastage</th>
-                   <th>Output</th>
-                   <th>Units MFG</th>
-                   <th>Cost</th>
-                </tr>
-            </thead>
-            <tbody>
-                {props.transactions.map((item, index) => {
-                    return (
-                        <tr key={index}>
-                            <td>{item.bathNo}</td>
-                            <td>{item.qtyA}</td>
-                            <td>{item.qtyB}</td>
-                            <td>{item.wastage}</td>
-                            <td>{item.output}</td>
-                            <td>{item.unitsMfg}</td>
-                            <td>{item.cost}</td>
-                            
-                        </tr>
-                    )
-                })}
-            </tbody>
-        </table>
+    <div className={styles.manufacturingDetailsTable}>
+      <table>
+        <thead>
+          <tr>
+            <th>Batch ID</th>
+            {allIngredients.map((ingredient, index) => (
+              <th key={index}>{ingredient} Quantity</th>
+            ))}
+            <th>Manufactured Quantity</th>
+            <th>Total Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          {realData.map((detail, index) => (
+            <tr key={index}>
+              <td>{detail.batchId}</td>
+              {allIngredients.map((ingredient, iIndex) => {
+                const ingredientDetail = detail.ingredients.find(ing => ing.productName === ingredient);
+                return (
+                  <td key={iIndex}>
+                    {ingredientDetail ? ingredientDetail.quantity : 0}
+                  </td>
+                );
+              })}
+              <td>{detail.manufacturedQuantity}</td>
+              <td>{detail.totalCost}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   )
 }

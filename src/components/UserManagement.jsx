@@ -13,18 +13,18 @@ const UserManagement = () => {
     const [trigger, setTrigger] = useState(false)
     const deleteUser = async (user) => {
         // console.log(user)
-        if(Object.values(user.roles).includes("01")){
-            alert("Cannot delete Admin")
+        if(user.role == "Admin") {
+            alert("Cannot delete admin")
             return
         }
         const currentUser = user
-        const response = await fetch("http://localhost:3500/deleteUser",{
-            method: "POST",
+        const newUsers = users.filter((user) => user !== currentUser)
+        const response = await fetch(`http://localhost:5000/users/${user._id}`,{
+            method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${accessToken}`
             },
-            body: JSON.stringify(currentUser),
             credentials: "include"
 
         })
@@ -37,7 +37,7 @@ const UserManagement = () => {
     },[])
 
     const getUsers = async() => {
-        const response = await fetch("http://localhost:3500/getUser",{
+        const response = await fetch("http://localhost:5000/users",{
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -49,9 +49,6 @@ const UserManagement = () => {
         const data = await response.json()
         console.log(data)
         setUsers(data)
-    }
-    const getRoleName = (roles) => {
-        return Object.keys(roles)
     }
 
     
@@ -70,7 +67,6 @@ const UserManagement = () => {
                     <thead>
                         <tr>
                             <th>Username</th>
-                            <th>Email</th>
                             <th>Role</th>
                             <th></th>
 
@@ -80,8 +76,7 @@ const UserManagement = () => {
                         {users.map((user, index) => (
                             <tr key={index}>
                                 <td>{user.username}</td>
-                                <td>{user.email}</td>
-                                <td>{getRoleName(user.roles)}</td>
+                                <td>{user.role}</td>
                                 <td><button><FontAwesomeIcon icon={faPen} /></button><button onClick={()=>deleteUser(user)}><FontAwesomeIcon icon={faTrash} /></button></td>
                                 
                             </tr>

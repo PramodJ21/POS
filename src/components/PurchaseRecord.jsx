@@ -17,26 +17,23 @@ const PurchaseRecord = () => {
     },[])
 
     const getMasterData = async () => {
-        const response = await fetch('http://localhost:3500/masters/get')
+        const response = await fetch('http://localhost:5000/products')
         const data = await response.json()
+        console.log(data)
         setMasterData(data)
     }
 
     const generateData = async () =>{
-      const data = []
-      const foundData = masterData.find(data=>data.name === productRef.current.value)
+      const foundData = masterData.find(data=>data.productName === productRef.current.value)
+      console.log(masterData)
       const sendData = {
-        "purchaseId": foundData.no,
-        "supplierId": vendorRef.current.value,
-        "purchaseDate": dateRef.current.value,
-        "productName": productRef.current.value,
-        "unitPrice": foundData.purchasePrice,
+        "productId": foundData.productId,
+        "supplier": vendorName,
         "quantity": qtyRef.current.value,
-        "totalAmount": parseInt(qtyRef.current.value)*parseInt(foundData.purchasePrice)
 
       }
 
-      const response = await fetch("http://localhost:3500/purchase/store",{
+      const response = await fetch("http://localhost:5000/purchase",{
         method:"POST",
         headers:{
           'Content-Type':'application/json'
@@ -44,29 +41,13 @@ const PurchaseRecord = () => {
         body:JSON.stringify(sendData)
       })
       
-      if(response.ok){
-        console.log("Data stored")
+      const data = await response.json()
+      if(!data){
+        alert("Error storing data")
       }
-      else{
-        console.log("Data not stored")
-      }
+      console.log(data)
 
-      const limit = parseInt(qtyRef.current.value)
-      for(let i =0;i<limit;i++){
-        data.push({
-          "productId":foundData.no,
-          "barcode":"123456",
-          "productName":productRef.current.value,
-          "quantity":"1",
-          "rate":foundData.sellPrice,
-          "totalAmount":limit*parseInt(foundData.sellPrice),
-          "purchaseDate":dateRef.current.value,
-          "vendor":vendorRef.current.value
-
-        })
-      }
-      
-      setPurchaseData(data)
+      setPurchaseData(data.purchasedProducts)
       console.log(purchaseData)
     }
   return (
@@ -76,17 +57,13 @@ const PurchaseRecord = () => {
           <div className={styles.inputs}>
           <select ref={productRef} value={productName} onChange={(e) => {setProductName(e.target.value)}}>
               {masterData.map((item,index)=>{
-                return <option key={index}>{item.name}</option>
+                return <option key={index}>{item.productName}</option>
               })}
             </select>
             <input ref={qtyRef} type="text" placeholder="Qty" />
-            <input  type="text" placeholder="Rate" />
-            <input ref={dateRef} type="date" />
-            <select ref={vendorRef} value={vendorName} onChange={(e) => {setVendorName(e.target.value)}}>
-              <option>Vendor A</option>
-              <option>Vendor B</option>
-              <option>Vendor C</option>
-            </select>
+            {/* <input  type="text" placeholder="Rate" /> */}
+            {/* <input ref={dateRef} type="date" /> */}
+            <input ref={vendorRef} type='text' value={vendorName} onChange={(e) => {setVendorName(e.target.value)}} placeholder='Supplier'/>
           </div>
           <div className={styles.generate}>
             <button onClick={()=>{

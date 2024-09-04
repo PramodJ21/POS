@@ -8,8 +8,21 @@ const Purchase = () => {
   const [purchaseData,setPurchaseData] = useState([])
 
   const getPurchaseData = async () => {
-    const response = await fetch('http://localhost:3500/purchase/get')
+    const response = await fetch('http://localhost:5000/purchase/get',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        startDate: '2024-09-04',
+        endDate: '2024-09-04'
+      }),
+      credentials: 'include'
+    }
+    )
     const data = await response.json()
+    console.log(data)
     setPurchaseData(data)
   }
 
