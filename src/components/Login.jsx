@@ -34,6 +34,7 @@ const Login = () => {
             if (roles.includes("Admin")) navigate("/dashboard")
             else if (roles.includes("Sales Operator")) navigate("/record-sales")
             else if (roles.includes("Purchase")) navigate("/record-purchase")
+            else if (roles.includes("Manufacturer")) navigate("/manufacturing-manager")
             else navigate("/unauthorized")
           
             console.log("Login Successful")

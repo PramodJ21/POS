@@ -1,0 +1,24 @@
+/* SalesChart.css */
+
+.chart-container {
+    width: 100%;
+    max-width: 500px; /* Smaller max width for the chart */
+    margin: 0 auto;
+    padding: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .chart-title {
+    text-align: center;
+    font-size: 1.2rem; /* Smaller font size for the title */
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .chart-wrapper {
+    position: relative;
+    height: 250px; /* Smaller height for the chart */
+  }
+  

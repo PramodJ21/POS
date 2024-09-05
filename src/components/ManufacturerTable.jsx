@@ -67,6 +67,7 @@ const ManufacturerTable = () => {
                 <select
                   value={mfg.status}
                   onChange={(e) => updateManufacturingStatus(mfg.batchId, e.target.value)}
+                  disabled={mfg.status === "Completed"} 
                 >
                   <option value="Work in Progress">Work in Progress</option>
                   <option value="Completed">Completed</option>

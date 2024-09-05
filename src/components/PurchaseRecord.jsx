@@ -26,6 +26,11 @@ const PurchaseRecord = () => {
     const generateData = async () =>{
       const foundData = masterData.find(data=>data.productName === productRef.current.value)
       console.log(masterData)
+      if(vendorName === "" ||productRef.current.value=== "" || qtyRef.current.value === "" ) {
+        alert("Please fill all the fields")
+        return
+      }
+      
       const sendData = {
         "productId": foundData.productId,
         "supplier": vendorName,
@@ -49,6 +54,7 @@ const PurchaseRecord = () => {
 
       setPurchaseData(data.purchasedProducts)
       console.log(purchaseData)
+      setTrigger(true)
     }
   return (
     <div className={styles.purchaseRecord}>
@@ -57,7 +63,7 @@ const PurchaseRecord = () => {
           <div className={styles.inputs}>
           <select ref={productRef} value={productName} onChange={(e) => {setProductName(e.target.value)}}>
               {masterData.map((item,index)=>{
-                return <option key={index}>{item.productName}</option>
+                if (item.category != "Finished Product") return <option key={index}>{item.productName}</option>
               })}
             </select>
             <input ref={qtyRef} type="text" placeholder="Qty" />
@@ -68,7 +74,7 @@ const PurchaseRecord = () => {
           <div className={styles.generate}>
             <button onClick={()=>{
               generateData()
-              setTrigger(true)}}>Generate</button>
+              }}>Generate</button>
           </div>
           <div className={styles.recordsTable}>
             <PurchaseRecordTable trigger={trigger} records={purchaseData} />

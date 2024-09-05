@@ -6,7 +6,12 @@ import TransactionTable from './TransactionTable.jsx'
 import PurchaseTransactionTable from './PurchaseTransactionTable.jsx'
 const Purchase = () => {
   const [purchaseData,setPurchaseData] = useState([])
-
+  const today = new Date().toISOString().split('T')[0];
+  const [startDate, setStartDate] = useState(today);
+  const [endDate, setEndDate] = useState(today);
+  const handleFilter = () => {
+    getPurchaseData();
+  };
   const getPurchaseData = async () => {
     const response = await fetch('http://localhost:5000/purchase/get',
     {
@@ -15,8 +20,8 @@ const Purchase = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        startDate: '2024-09-04',
-        endDate: '2024-09-04'
+        startDate: startDate,
+        endDate: endDate
       }),
       credentials: 'include'
     }
@@ -35,15 +40,23 @@ const Purchase = () => {
         <main className={styles.main}>
           <h1>Purchase</h1>
         <div className={styles.filter}>
-          <div className={styles.from}>
+        <div className={styles.from}>
             <p>From</p>
-            <input type="date" />
+            <input
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
           </div>
           <div className={styles.to}>
             <p>To</p>
-            <input type="date" />
+            <input
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
           </div>
-          <button>Filter</button>
+          <button onClick={handleFilter}>Filter</button>
         </div>
         <div className={styles.content}>
           <div className={styles.charts}>

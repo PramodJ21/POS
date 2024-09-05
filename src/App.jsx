@@ -103,7 +103,7 @@ function App() {
         element={
           <ProtectedRoute
             element={ManufacturingManager}
-            rolesAllowed={["Admin"]}
+            rolesAllowed={["Manufacturer"]}
           />
         }
       />
