@@ -2,6 +2,8 @@ import React, { useState,useEffect,useRef} from 'react'
 import styles from './PurchaseRecord.module.css'
 import Header from './Header'
 import PurchaseRecordTable from './PurchaseRecordTable'
+const accessToken = localStorage.getItem('accessToken')
+console.log(accessToken)
 const PurchaseRecord = () => {
   const [trigger , setTrigger] = useState(false);
   const [purchaseData,setPurchaseData] = useState([])
@@ -17,7 +19,15 @@ const PurchaseRecord = () => {
     },[])
 
     const getMasterData = async () => {
-        const response = await fetch('http://localhost:5000/products')
+        const response = await fetch('http://localhost:5000/products',
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+                },
+        }
+        )
         const data = await response.json()
         console.log(data)
         setMasterData(data)
@@ -41,7 +51,8 @@ const PurchaseRecord = () => {
       const response = await fetch("http://localhost:5000/purchase",{
         method:"POST",
         headers:{
-          'Content-Type':'application/json'
+          'Content-Type':'application/json',
+          'Authorization': `Bearer ${accessToken}`
         },
         body:JSON.stringify(sendData)
       })

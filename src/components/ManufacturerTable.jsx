@@ -4,11 +4,18 @@ import styles from './ManufacturerTable.module.css'; // Import the CSS module
 
 const ManufacturerTable = () => {
   const [manufacturings, setManufacturings] = useState([]);
-
+  const accessToken = localStorage.getItem("accessToken")
   useEffect(() => {
     // Fetch manufacturing details on component mount
     const getManufacturingDetails = async () => {
-        const response = await fetch('http://localhost:5000/manufacturing')
+        const response = await fetch('http://localhost:5000/manufacturing',
+        {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${accessToken}`
+          }
+        }
+        )
         const data = await response.json()
         console.log(data)
         setManufacturings(data)
@@ -22,6 +29,7 @@ const ManufacturerTable = () => {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify({ status: newStatus }),
         });

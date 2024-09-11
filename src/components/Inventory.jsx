@@ -10,6 +10,7 @@ const Inventory = () => {
   const [inventory, setInventory] = useState([]);
   const [startDate, setStartDate] = useState(today);
   const [endDate, setEndDate] = useState(today);
+  const accessToken = localStorage.getItem('accessToken')
   
   // Function to fetch inventory data based on the date range
   const fetchInventoryData = async () => {
@@ -18,6 +19,7 @@ const Inventory = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`  
         },
         body: JSON.stringify({
           startDate,

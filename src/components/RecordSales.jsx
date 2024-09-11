@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import './RecordSales.css';
 import CustomerPopUp from './CustomerPopUp.jsx';
 import Header from './Header.jsx';
-
+const accessToken = localStorage.getItem('accessToken')
 
 const data = {}
 // const data = {
@@ -55,10 +55,19 @@ const RecordSales = () => {
   const salesInputRef = useRef(null);
   const addButtonRef = useRef(null);
   const regexPhone = /^[0-9]{10}$/;
-  
+  const accessToken = localStorage.getItem('accessToken')
+  console.log(accessToken)
 
     const getMasterData = async () => {
-        const response = await fetch('http://localhost:5000/products/category/Trading%20Product')
+        const response = await fetch('http://localhost:5000/products/category/Trading%20Product',
+        {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+                },
+        }
+        )
         const data_ = await response.json()
         data_.forEach((item,index) =>{
           data[item.productCode] = {"productCode":item.productCode,"productName":item.productName,"salesPrice":item.salesPrice,"quantity":1}
@@ -126,7 +135,15 @@ const RecordSales = () => {
       alert('Invalid phone number');
       setCustomerPhone('');
     } else {
-      const response = await fetch(`http://localhost:5000/customer/${customerPhone}`)
+      const response = await fetch(`http://localhost:5000/customer/${customerPhone}`,
+      {
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${accessToken}`
+          }
+      }
+      )
 
       if(response.ok){
         setIsAdded(true)
@@ -163,7 +180,8 @@ const RecordSales = () => {
     {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${accessToken}`
         },
         body: JSON.stringify(newSale)
     }

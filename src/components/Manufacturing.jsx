@@ -2,15 +2,58 @@ import React, { useEffect, useState } from 'react'
 import styles from './Manufacturing.module.css'
 import Sidebar from './SideBar'
 import ManufacturingTable from './ManufacturingTable'
+import ManufacturingChart from './ManufacturingChart.jsx'
 const Manufacturing = () => {
   const [manufacturingData, setManufacturingData] = useState([])
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState('');
   const [unitsMFG, setUnitsMFG] = useState(0)
   const [costOfMFG, setCostOfMFG] = useState(0)
+  const [wip, setWIP] = useState(0)
+  const [manufacturingChartData, setManufacturingChartData] = useState([]) 
+  const accessToken = localStorage.getItem('accessToken')
+
+  const getChartData = async () => {
+    const response = await fetch('http://localhost:5000/manufacturing/chart',
+    {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        productName: selectedProduct
+      })
+    }
+    )
+    const data = await response.json()
+    console.log(data) 
+    setManufacturingChartData(data)
+  }
+  const getAllData = async () =>{
+    const response = await fetch("http://localhost:5000/manufacturing",{
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json()
+    console.log(data)
+    const wipData = data.filter((d,i) => d.status === "Work in Progress" && d.productName === selectedProduct)
+    setWIP(wipData.length)
+  }
   const getManufacturingData = async (p) => {
     if(p == "") return
-    const response = await fetch(`http://localhost:5000/manufacturing/completed/${p}`)
+    const response = await fetch(`http://localhost:5000/manufacturing/completed/${p}`,
+    {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+        'Content-Type': 'application/json'
+      }
+    }
+    )
     const data = await response.json()
     console.log(data)
     data.map((d,i) => {
@@ -18,6 +61,7 @@ const Manufacturing = () => {
       setUnitsMFG(unitsMFG => unitsMFG + parseInt(d.manufacturedQuantity))
       setCostOfMFG(costOfMFG => parseInt(d.totalCost))
     })
+   
     if(response.ok){
     setManufacturingData(data)
     }
@@ -25,7 +69,14 @@ const Manufacturing = () => {
 
   const getFinsihsedProducts = async () => {
     try {
-      const res = await fetch('http://localhost:5000/products/category/Finished%20Product');
+      const res = await fetch('http://localhost:5000/products/category/Finished%20Product',
+      {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+          'Content-Type': 'application/json'
+        }
+      });
       const data = await res.json();
   
       // Validate that data is an array
@@ -41,8 +92,12 @@ const Manufacturing = () => {
     }
   };
   useEffect(
-    () => {getFinsihsedProducts()}
-  ,[])
+    () => {
+      getFinsihsedProducts()
+      getAllData()
+      if(selectedProduct) getChartData()
+    }
+  ,[selectedProduct])
   
   return (
     <div className={styles.manufacturing}>
@@ -63,7 +118,8 @@ const Manufacturing = () => {
         <div className={styles.content}>
           <div className={styles.boxAndChart}>
           <div className={styles.chart}>
-                <h2>Chart Name</h2>
+
+              <ManufacturingChart manufacturingChartData={manufacturingChartData} />
             </div>
             <div className={styles.boxes}>
                 <div className={styles.box}>
@@ -77,7 +133,7 @@ const Manufacturing = () => {
                 </div>
                 <div className={styles.box}>
                     <h2>WIP</h2>
-                    <div>abcd</div>
+                    <div>{wip}</div>
                 </div>
                 
             </div>

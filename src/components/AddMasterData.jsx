@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styles from './AddMasterData.module.css'
+const accessToken = localStorage.getItem('accessToken') 
 const AddMasterData = (props) => {
     const [data, setData] = useState({productCode:"", productName:"", category:"", purchasePrice:"", salesPrice:"", supplier:""});
     const addMasterData = async(req,res) =>{
@@ -8,7 +9,8 @@ const AddMasterData = (props) => {
         {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${accessToken}`
             },
             credentials : "include",
             body: JSON.stringify(data)

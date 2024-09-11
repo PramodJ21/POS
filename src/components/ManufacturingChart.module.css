@@ -1,0 +1,28 @@
+/* YourStyles.module.css */
+
+.charts {
+    display: flex;
+    justify-content: center; /* Center the chart horizontally */
+    align-items: center; /* Center the chart vertically */
+    padding: 20px; /* Add some padding around the chart */
+    background-color: #f8f9fa; /* Light background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    width: 100%; /* Make the container span the full width */
+    height: 100%; /* Make the container span the full width */
+  }
+  
+  .chart {
+    width: 100%; /* Full width of the parent container */
+    height: 300px; /* Adjust the height as needed */
+    position: relative; /* Relative position for responsive handling */
+    margin: 0; /* Remove any default margin */
+  }
+  
+  /* Responsive styling for smaller screens */
+  @media (max-width: 600px) {
+    .chart {
+      height: 300px; /* Adjust the height for smaller screens */
+    }
+  }
+  

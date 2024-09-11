@@ -6,6 +6,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import styles from "./MasterTable.module.css"
 import AddMasterData from './AddMasterData';
 import EditMasterData from './EditMasterData';
+const accessToken = localStorage.getItem('accessToken')
 
 
 const InventoryMaster = (props) => {
@@ -18,7 +19,9 @@ const InventoryMaster = (props) => {
         const response = await fetch(`http://localhost:5000/products/${productId}`,{
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${accessToken}`
+
             },
             credentials : "include",
             

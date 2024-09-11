@@ -7,12 +7,20 @@ const ManufacturingManager = () => {
   const [product, setProduct] = useState({productName : "", quantity: ""})
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const accessToken = localStorage.getItem("accessToken")
   useEffect(()=>{
     getProductsToManufacture()
     
   },[])
   const getProductsToManufacture = async () => {
-    const response = await fetch('http://localhost:5000/products/category/Finished%20Product')
+    const response = await fetch('http://localhost:5000/products/category/Finished%20Product',
+    {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    }
+    )
     const data = await response.json()
     setProductsToManufacture(data)
   }
@@ -26,6 +34,7 @@ const ManufacturingManager = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
         },
         body: JSON.stringify(product),
       });
@@ -53,6 +62,8 @@ const ManufacturingManager = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+
         },
         body: JSON.stringify(product),
       });

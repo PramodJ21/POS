@@ -3,7 +3,7 @@ import styles from './Masters.module.css';
 import Sidebar from './SideBar';
 import InventoryMaster from './InventoryMaster';
 import ManufacturingMaster from './ManufacturingMaster';
-
+const accessToken = localStorage.getItem('accessToken')
 const Masters = () => {
     const [masterData, setMasterData] = useState([]);
     const [recipes, setRecipes] = useState([]);
@@ -15,7 +15,15 @@ const Masters = () => {
 
     const getMasterData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/products');
+            const response = await fetch('http://localhost:5000/products',
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                    },
+            }
+            );
             const data = await response.json();
 
             // Validate that data is an array
@@ -33,7 +41,15 @@ const Masters = () => {
 
     const getRecipesData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/recipes');
+            const response = await fetch('http://localhost:5000/recipes',
+            {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${accessToken}`
+                    },
+            }
+            );
             const data = await response.json();
 
             // Validate that data is an array

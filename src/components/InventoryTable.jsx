@@ -19,8 +19,8 @@ const InventoryTable = (props) => {
                         <tr key={index}>
                             <td>{item.productName}</td>
                             <td>{item.openingBalance}</td>
-                            <td>{item.totalPurchased}</td>
-                            <td>{item.totalSold}</td>
+                            <td>{item.purchased}</td>
+                            <td>{item.sold}</td>
                             <td>{item.closingBalance}</td>
                         </tr>
                     )
