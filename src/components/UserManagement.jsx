@@ -2,6 +2,7 @@ import {React,useEffect,useState} from 'react'
 import Sidebar from './SideBar'
 import styles from './UserManagement.module.css'
 import AddUser from './AddUser'
+import EditUser from './EditUser'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +11,9 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 const UserManagement = () => {
     const accessToken = localStorage.getItem('accessToken')
     const [users, setUsers] = useState([])
+    const [userToEdit, setUserToEdit] = useState(null);
     const [trigger, setTrigger] = useState(false)
+    const [editUserTrigger, setEditUserTrigger] = useState(false);
     const deleteUser = async (user) => {
         // console.log(user)
         if(user.role == "Admin") {
@@ -31,6 +34,10 @@ const UserManagement = () => {
         const data = await response.json()
         console.log(data)
         setUsers(newUsers)
+    }
+    const editUser = async(user) => {
+        setUserToEdit(user)
+        setEditUserTrigger(true)
     }
     useEffect(()=>{
         getUsers()
@@ -77,8 +84,8 @@ const UserManagement = () => {
                             <tr key={index}>
                                 <td>{user.username}</td>
                                 <td>{user.role}</td>
-                                <td><button><FontAwesomeIcon icon={faPen} /></button><button onClick={()=>deleteUser(user)}><FontAwesomeIcon icon={faTrash} /></button></td>
-                                
+                                <td><button onClick={()=> editUser(user)}><FontAwesomeIcon icon={faPen} /></button>
+                                <button onClick={()=>deleteUser(user)}><FontAwesomeIcon icon={faTrash} /></button></td>
                             </tr>
                         ))}
                     </tbody>
@@ -87,7 +94,11 @@ const UserManagement = () => {
         </div>
     </main>
     <AddUser trigger={trigger} setTrigger={setTrigger} setUsers={setUsers} users={users}/>
-
+    <EditUser 
+        trigger={editUserTrigger} 
+        setTrigger={setEditUserTrigger} 
+        user={userToEdit}
+      />
     </div>
   )
 }

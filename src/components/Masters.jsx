@@ -3,7 +3,9 @@ import styles from './Masters.module.css';
 import Sidebar from './SideBar';
 import InventoryMaster from './InventoryMaster';
 import ManufacturingMaster from './ManufacturingMaster';
-const accessToken = localStorage.getItem('accessToken')
+
+const accessToken = localStorage.getItem('accessToken');
+
 const Masters = () => {
     const [masterData, setMasterData] = useState([]);
     const [recipes, setRecipes] = useState([]);
@@ -15,18 +17,15 @@ const Masters = () => {
 
     const getMasterData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/products',
-            {
+            const response = await fetch('http://localhost:5000/products', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${accessToken}`
-                    },
-            }
-            );
+                },
+            });
             const data = await response.json();
 
-            // Validate that data is an array
             if (Array.isArray(data)) {
                 setMasterData(data);
             } else {
@@ -35,24 +34,21 @@ const Masters = () => {
             }
         } catch (error) {
             console.error('Error fetching master data:', error);
-            setMasterData([]); // Set to empty array on error
+            setMasterData([]);
         }
     };
 
     const getRecipesData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/recipes',
-            {
+            const response = await fetch('http://localhost:5000/recipes', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${accessToken}`
-                    },
-            }
-            );
+                },
+            });
             const data = await response.json();
 
-            // Validate that data is an array
             if (Array.isArray(data)) {
                 setRecipes(data);
             } else {
@@ -61,7 +57,7 @@ const Masters = () => {
             }
         } catch (error) {
             console.error('Error fetching recipes data:', error);
-            setRecipes([]); // Set to empty array on error
+            setRecipes([]);
         }
     };
 
@@ -71,10 +67,18 @@ const Masters = () => {
             <main className={styles.main}>
                 <h1>Masters</h1>
                 <div className={styles.masterTable}>
-                    <InventoryMaster data={masterData} setData={setMasterData}/>
+                    <InventoryMaster 
+                        data={masterData} 
+                        setData={setMasterData}
+                        refreshData={getMasterData}
+                    />
                     <div className={styles.manufacturingMaster}>
                         <h2>Manufacturing Master</h2>
-                        <ManufacturingMaster data={recipes} setData={setRecipes}/>
+                        <ManufacturingMaster 
+                            data={recipes} 
+                            setData={setRecipes}
+                            refreshData={getRecipesData}
+                        />
                     </div>
                 </div>
             </main>

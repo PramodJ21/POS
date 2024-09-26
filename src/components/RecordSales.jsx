@@ -4,7 +4,7 @@ import CustomerPopUp from './CustomerPopUp.jsx';
 import Header from './Header.jsx';
 const accessToken = localStorage.getItem('accessToken')
 
-const data = {}
+
 // const data = {
 //   paracetamol: {
 //     code: 'paracetamol',
@@ -51,6 +51,7 @@ const RecordSales = () => {
   const [customerPhone, setCustomerPhone] = useState('');
   const [popupTrigger, setPopupTrigger] = useState(false);
   const [customerData, setCustomerData] = useState({});
+  const [data, setData] = useState({});
   const [isAdded, setIsAdded] = useState(false);
   const salesInputRef = useRef(null);
   const addButtonRef = useRef(null);
@@ -58,22 +59,41 @@ const RecordSales = () => {
   const accessToken = localStorage.getItem('accessToken')
   console.log(accessToken)
 
-    const getMasterData = async () => {
-        const response = await fetch('http://localhost:5000/products/category/Trading%20Product',
-        {
-            method: 'GET',
+  const getMasterData = async () => {
+    try {
+        const response = await fetch('http://localhost:5000/products/category', {
+            method: 'POST', // Changed to POST
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
-                },
+                'Authorization': `Bearer ${accessToken}` // Ensure accessToken is valid
+            },
+            body: JSON.stringify({ category: ["Trading Product", "Finished Product"] })
+        });
+
+        // Check if the request was successful
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status} - ${response.statusText}`);
         }
-        )
-        const data_ = await response.json()
-        data_.forEach((item,index) =>{
-          data[item.productCode] = {"productCode":item.productCode,"productName":item.productName,"salesPrice":item.salesPrice,"quantity":1}
-        } )
-        console.log(data)
+
+        const data_ = await response.json();
+
+        // Use reduce to build the data object efficiently
+        const data = data_.reduce((acc, item) => {
+            acc[item.productCode] = {
+                productCode: item.productCode,
+                productName: item.productName,
+                salesPrice: item.salesPrice,
+                quantity: 1 // Default quantity
+            };
+            return acc;
+        }, {});
+
+        console.log(data); // Log or handle the processed data
+        setData(data); // Set the data state
+    } catch (error) {
+        console.error('Failed to fetch master data:', error.message);
     }
+};
 
   useEffect(() => {
     getMasterData()

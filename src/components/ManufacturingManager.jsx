@@ -13,12 +13,14 @@ const ManufacturingManager = () => {
     
   },[])
   const getProductsToManufacture = async () => {
-    const response = await fetch('http://localhost:5000/products/category/Finished%20Product',
+    const response = await fetch('http://localhost:5000/products/category',
     {
-      method: 'GET',
+      method: 'POST',
       headers: {
+        'Content-Type': 'application/json',
         'Authorization': `Bearer ${accessToken}`
-      }
+      },
+      body: JSON.stringify({ category: ["Finished Product"] })
     }
     )
     const data = await response.json()

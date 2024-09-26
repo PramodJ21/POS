@@ -69,13 +69,17 @@ const Manufacturing = () => {
 
   const getFinsihsedProducts = async () => {
     try {
-      const res = await fetch('http://localhost:5000/products/category/Finished%20Product',
+      const res = await fetch('http://localhost:5000/products/category',
       {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({
+          category: ['Finished Product']
+        })
+
       });
       const data = await res.json();
   
