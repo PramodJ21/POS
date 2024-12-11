@@ -14,7 +14,7 @@ const InventoryMaster = ({ data, setData, refreshData }) => {
 
     const deleteData = async (productId) => {
         try {
-            const response = await fetch(`http://localhost:5000/products/${productId}`, {
+            const response = await fetch(`https://pharma-erp-backend.onrender.com/products/${productId}`, {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const InventoryMaster = ({ data, setData, refreshData }) => {
 
     const handleUpdate = async (updatedProduct) => {
         try {
-            const response = await fetch(`http://localhost:5000/products/${updatedProduct.productId}`, {
+            const response = await fetch(`https://pharma-erp-backend.onrender.com/products/${updatedProduct.productId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
