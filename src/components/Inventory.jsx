@@ -15,7 +15,7 @@ const Inventory = () => {
   // Function to fetch inventory data based on the date range
   const fetchInventoryData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/inventory/get', {
+      const response = await fetch('https://pharma-erp-backend.onrender.com/inventory/get', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
