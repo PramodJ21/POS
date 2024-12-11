@@ -13,7 +13,7 @@ const ManufacturingManager = () => {
     
   },[])
   const getProductsToManufacture = async () => {
-    const response = await fetch('http://localhost:5000/products/category',
+    const response = await fetch('https://pharma-erp-backend.onrender.com/products/category',
     {
       method: 'POST',
       headers: {
@@ -32,7 +32,7 @@ const ManufacturingManager = () => {
       return
     }
      try {
-      const response = await fetch('http://localhost:5000/manufacturing/check', {
+      const response = await fetch('https://pharma-erp-backend.onrender.com/manufacturing/check', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ const ManufacturingManager = () => {
 
   const handleStart = async () => {
     try {
-      const response = await fetch('http://localhost:5000/manufacturing/start', {
+      const response = await fetch('https://pharma-erp-backend.onrender.com/manufacturing/start', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
