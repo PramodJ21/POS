@@ -9,7 +9,7 @@ const Login = () => {
     const navigate = useNavigate()
     const handleLogin = async () => {
         try{
-        const response = await fetch("http://localhost:5000/auth/login",
+        const response = await fetch("https://pharma-erp-backend.onrender.com/auth/login",
         {
             method: "POST",
             headers: {
