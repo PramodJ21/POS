@@ -19,7 +19,7 @@ const PurchaseRecord = () => {
     },[])
 
     const getMasterData = async () => {
-        const response = await fetch('http://localhost:5000/products',
+        const response = await fetch('https://pharma-erp-backend.onrender.com/products',
         {
             method: 'GET',
             headers: {
@@ -48,7 +48,7 @@ const PurchaseRecord = () => {
 
       }
 
-      const response = await fetch("http://localhost:5000/purchase",{
+      const response = await fetch("https://pharma-erp-backend.onrender.com/purchase",{
         method:"POST",
         headers:{
           'Content-Type':'application/json',
