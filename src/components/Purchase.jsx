@@ -21,7 +21,7 @@ const Purchase = () => {
   const getPurchaseProducts = async () => {
     try {
       // Fetch only Raw Material and Trading Product categories
-      const res1 = await fetch('http://localhost:5000/products/category/Raw%20Material', {
+      const res1 = await fetch('https://pharma-erp-backend.onrender.com/products/category/Raw%20Material', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${accessToken}`,
@@ -29,7 +29,7 @@ const Purchase = () => {
         }
       });
       
-      const res2 = await fetch('http://localhost:5000/products/category/Trading%20Product', {
+      const res2 = await fetch('https://pharma-erp-backend.onrender.com/products/category/Trading%20Product', {
         method: 'GET',
         headers: {
           'Authorization': `Bearer ${accessToken}`,
@@ -63,7 +63,7 @@ const Purchase = () => {
 
   const getPurchaseData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/purchase/get', {
+      const response = await fetch('https://pharma-erp-backend.onrender.com/purchase/get', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${accessToken}`,
