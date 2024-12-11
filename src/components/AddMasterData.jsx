@@ -5,7 +5,7 @@ const AddMasterData = (props) => {
     const [data, setData] = useState({productCode:"", productName:"", category:"", purchasePrice:"", salesPrice:"", supplier:""});
     const addMasterData = async(req,res) =>{
 
-        const response = await fetch('http://localhost:5000/products',
+        const response = await fetch('https://pharma-erp-backend.onrender.com/products',
         {
             method: "POST",
             headers: {
