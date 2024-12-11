@@ -61,7 +61,7 @@ const RecordSales = () => {
 
   const getMasterData = async () => {
     try {
-        const response = await fetch('http://localhost:5000/products/category', {
+        const response = await fetch('https://pharma-erp-backend.onrender.com/products/category', {
             method: 'POST', // Changed to POST
             headers: {
                 'Content-Type': 'application/json',
@@ -155,7 +155,7 @@ const RecordSales = () => {
       alert('Invalid phone number');
       setCustomerPhone('');
     } else {
-      const response = await fetch(`http://localhost:5000/customer/${customerPhone}`,
+      const response = await fetch(`https://pharma-erp-backend.onrender.com/customer/${customerPhone}`,
       {
           method: "GET",
           headers: {
@@ -196,7 +196,7 @@ const RecordSales = () => {
     };
 
     console.log('Completed Sale:', newSale);
-    const response = await fetch("http://localhost:5000/sales",
+    const response = await fetch("https://pharma-erp-backend.onrender.com/sales",
     {
         method: "POST",
         headers: {
