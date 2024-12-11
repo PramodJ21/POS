@@ -22,7 +22,7 @@ const UserManagement = () => {
         }
         const currentUser = user
         const newUsers = users.filter((user) => user !== currentUser)
-        const response = await fetch(`http://localhost:5000/users/${user._id}`,{
+        const response = await fetch(`https://pharma-erp-backend.onrender.com/users/${user._id}`,{
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
