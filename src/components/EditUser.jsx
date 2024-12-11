@@ -16,7 +16,7 @@ const EditUser = (props) => {
     }, [props.user]);
 
     const updateUser = async (user) => {
-        const response = await fetch(`http://localhost:5000/users/${props.user._id}`, {
+        const response = await fetch(`https://pharma-erp-backend.onrender.com/users/${props.user._id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
