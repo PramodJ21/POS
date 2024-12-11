@@ -8,7 +8,7 @@ const ManufacturerTable = () => {
   useEffect(() => {
     // Fetch manufacturing details on component mount
     const getManufacturingDetails = async () => {
-        const response = await fetch('http://localhost:5000/manufacturing',
+        const response = await fetch('https://pharma-erp-backend.onrender.com/manufacturing',
         {
           method: 'GET',
           headers: {
@@ -25,7 +25,7 @@ const ManufacturerTable = () => {
 
   const updateManufacturingStatus = async (batchId, newStatus) => {
     try {
-        const response = await fetch(`http://localhost:5000/manufacturing/batch/${batchId}`, {
+        const response = await fetch(`https://pharma-erp-backend.onrender.com/manufacturing/batch/${batchId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
