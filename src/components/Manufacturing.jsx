@@ -14,7 +14,7 @@ const Manufacturing = () => {
   const accessToken = localStorage.getItem('accessToken')
 
   const getChartData = async () => {
-    const response = await fetch('http://localhost:5000/manufacturing/chart',
+    const response = await fetch('https://pharma-erp-backend.onrender.com/manufacturing/chart',
     {
       method: 'POST',
       headers: {
@@ -31,7 +31,7 @@ const Manufacturing = () => {
     setManufacturingChartData(data)
   }
   const getAllData = async () =>{
-    const response = await fetch("http://localhost:5000/manufacturing",{
+    const response = await fetch("https://pharma-erp-backend.onrender.com/manufacturing",{
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${accessToken}`,
@@ -45,7 +45,7 @@ const Manufacturing = () => {
   }
   const getManufacturingData = async (p) => {
     if(p == "") return
-    const response = await fetch(`http://localhost:5000/manufacturing/completed/${p}`,
+    const response = await fetch(`https://pharma-erp-backend.onrender.com/manufacturing/completed/${p}`,
     {
       method: 'GET',
       headers: {
@@ -69,7 +69,7 @@ const Manufacturing = () => {
 
   const getFinsihsedProducts = async () => {
     try {
-      const res = await fetch('http://localhost:5000/products/category',
+      const res = await fetch('https://pharma-erp-backend.onrender.com/products/category',
       {
         method: 'POST',
         headers: {
