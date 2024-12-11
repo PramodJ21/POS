@@ -24,7 +24,7 @@ const Sales = () => {
   const getSellProducts = async () => {
     try {
       // Fetch data from both endpoints
-      const res1 = await fetch('http://localhost:5000/products/category/Finished%20Product',
+      const res1 = await fetch('https://pharma-erp-backend.onrender.com/products/category/Finished%20Product',
       {
         method: 'GET',
         headers: {
@@ -32,7 +32,7 @@ const Sales = () => {
           'Content-Type': 'application/json'
         }
       });
-      const res2 = await fetch('http://localhost:5000/products/category/Trading%20Product',
+      const res2 = await fetch('https://pharma-erp-backend.onrender.com/products/category/Trading%20Product',
         {
           method: 'GET',
           headers: {
@@ -63,7 +63,7 @@ const Sales = () => {
 
   const getSalesData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/sales/get", {
+      const response = await fetch("https://pharma-erp-backend.onrender.com/sales/get", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
