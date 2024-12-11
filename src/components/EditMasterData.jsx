@@ -32,7 +32,7 @@ const EditMasterData = (props) => {
         }
 
         try {
-            const response = await fetch(`http://localhost:5000/products/${props.editData.productId}`, {
+            const response = await fetch(`https://pharma-erp-backend.onrender.com/products/${props.editData.productId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
