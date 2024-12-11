@@ -17,7 +17,7 @@ const Masters = () => {
 
     const getMasterData = async () => {
         try {
-            const response = await fetch('http://localhost:5000/products', {
+            const response = await fetch('https://pharma-erp-backend.onrender.com/products', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
