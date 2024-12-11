@@ -21,7 +21,7 @@ const Dashboard = () => {
   }
 
   const getManufacturingData = async () => {
-    const response = await fetch('http://localhost:5000/manufacturing',{
+    const response = await fetch('https://pharma-erp-backend.onrender.com/manufacturing',{
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${accessToken}`,
@@ -38,7 +38,7 @@ const Dashboard = () => {
   }
   const getPurchaseData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/purchase/get', {
+      const response = await fetch('https://pharma-erp-backend.onrender.com/purchase/get', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${accessToken}`,
@@ -60,7 +60,7 @@ const Dashboard = () => {
   };
   const getSalesData = async () => {
     try {
-      const response = await fetch("http://localhost:5000/sales/get", {
+      const response = await fetch("https://pharma-erp-backend.onrender.com/sales/get", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
